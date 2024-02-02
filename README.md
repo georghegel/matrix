@@ -9,9 +9,9 @@
 ## Trace, diagonal matrices, filling matrices and other useful tools.
 
 ## References:
-[1] Кострикин - Введение в Алгебру
-[2] Винберг - Курс алгебры
-[3] Gauss elimination - wikipedia
-[4] Invertible matrices - wikipedia
-[5] 
-[6]
+[1] Кострикин - Введение в Алгебру<br>
+[2] Винберг - Курс алгебры<br>
+[3] Gauss elimination - wikipedia<br>
+[4] Invertible matrices - wikipedia<br>
+[5] <br>
+[6]<br>
