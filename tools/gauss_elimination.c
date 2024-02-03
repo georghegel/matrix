@@ -3,12 +3,12 @@
 /*
  * There are several ways to calculate determinant of a square matrix.
  *
- * First way is intuitive and brute-force: recursive way using minors:
+ * First way is intuitive and brute-force or Laplace's method: recursive way using adjugate matrix and minors.
  * Computational efficiency of this algorithm is O(n!) - which is insanely bad.
  *
- * Second way is a mathematical approach: Gaussian Elimination to get row-echelon form.
- * When we get this form of a matrix calculation of a det becomes kid's stuff. Multiply diagonal elements.
- * Computational efficiency - O(n^3 + n), thus O(n^3) - which is A MUCH better, than the recursive way.
+ * Second way is from Linear Algebra: Gaussian Elimination to get row-echelon form.
+ * When we get this form of a matrix, calculation of determinant becomes easy. Just multiply diagonal elements.
+ * Computational efficiency - O(n^3 + n), thus O(n^3) - which is MUCH better, than the recursive way.
  *
  * References:
  * [1] Gauss Elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
