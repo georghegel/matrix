@@ -2,9 +2,8 @@
 
 int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
     int answer = OK;
-    if ((!does_matrix_exist(A) || \
-        !does_matrix_exist(B) || \
-        !does_matrix_exist(result)))
+    if (!does_matrix_exist(A) || \
+        !does_matrix_exist(B))
         answer = INCORRECT_MATRIX;
     else if (!is_equal_size(A, B))
         answer = CALCULATION_ERROR;
