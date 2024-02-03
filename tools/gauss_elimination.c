@@ -7,8 +7,8 @@
  * Computational efficiency of this algorithm is O(n!) - which is insanely bad.
  *
  * Second way is a mathematical approach: Gaussian Elimination to get row-echelon form.
- * When we get this form of a matrix calculation of a det becomes kid's stuff. Multiply diagonal.
- * Comp efficiency - O(n^3 + n), thus O(n^3) - which is A MUCH better, than factorial.
+ * When we get this form of a matrix calculation of a det becomes kid's stuff. Multiply diagonal elements.
+ * Computational efficiency - O(n^3 + n), thus O(n^3) - which is A MUCH better, than the recursive way.
  *
  * References:
  * [1] Gauss Elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
@@ -16,38 +16,37 @@
  * [3] Computational Efficiency - https://en.wikipedia.org/wiki/Gaussian_elimination#Computational_efficiency
  * */
 
-int gauss_elimination(matrix_t *A, double *result){
+void gauss_elimination(matrix_t *A, double *result){
 
-    if (is_determinant_zero(A))
-        result = 0.0;
-    else {
-        int row_pivot = 0; /* Initialization of the pivot row */
-        int column_pivot = 0; /* Initialization of the pivot column */
+    matrix_t tmp;
+    int dimension = A->rows;
+    s21_create_matrix(dimension, dimension, &tmp);
+    tmp.matrix = A->matrix;
+    double ratio = 0.0;
 
-        int i_max = 0;
-        int i = row_pivot;
-        double f = 0;
-        while (row_pivot < A->rows && column_pivot < A->columns) {
-            i_max = argmax(i, column_pivot, A);
-            if (A->matrix[i_max][column_pivot])
-                ++column_pivot;
-            else {
-                swap_rows(row_pivot, i_max, A);
-                for (i = h + 1; i < A->rows; ++i) {
-                    f = A->matrix[i][column_pivot] / A->matrix[row_pivot][column_pivot];
-                    A->matrix[i][column_pivot] = 0;
-                    for (int j = column_pivot + 1; j < column_pivot; ++j)
-                        A->matrix[i][j] = A->matrix[i][j] - A->matrix[row_pivot][j] * f;
+    int first_zero_occur = 0;
+    for (int i = 0; i < dimension; ++i) {
+        if (tmp.matrix[i][i] == 0.0) {
+            first_zero_occur = i;
+            int non_zero_index = find_non_zero_diagonal_element(i + 1, &tmp);
+            if (tmp.matrix[non_zero_index][non_zero_index] != 0.0) {
+                swap_rows(first_zero_occur, non_zero_index, &tmp);
+                for (int index = 0; index < dimension; ++index) tmp.matrix[i][index] *= -1;
+            } else
+                continue;
+        } else
+        {
+            for (int j = 0; j < dimension; ++j) {
+                if (j > i) {
+                    ratio = tmp.matrix[j][i] / tmp.matrix[i][i];
+                    for (int k = 1; k < dimension; ++k) {
+                        tmp.matrix[j][k] = tmp.matrix[j][k] - ratio * tmp.matrix[i][k];
+                    }
                 }
-                ++row_pivot;
-                ++column_pivot;
             }
         }
-
-        result = 1.0;
-        for (int i = 0; i < A->rows; ++i) {
-            result *= A->matrix[i][i];
-        }
     }
-    return SUCCESS;
+    for (int i = 0; i < dimension; ++i)
+        *result *= tmp.matrix[i][i];
+    s21_remove_matrix(&tmp);
 }
