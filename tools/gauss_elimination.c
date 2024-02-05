@@ -16,37 +16,46 @@
  * [3] Computational Efficiency - https://en.wikipedia.org/wiki/Gaussian_elimination#Computational_efficiency
  * */
 
-void gauss_elimination(matrix_t *A, double *result){
+void elimination_processor(double *ratio, matrix_t *row_echelon, int i, int j, int dimension, int inverse){
 
-    matrix_t tmp;
+    dimension = inverse ? dimension * 2 : dimension;
+
+    *ratio = row_echelon->matrix[j][i] / row_echelon->matrix[i][i];
+    for (int k = 0; k < dimension; ++k) {
+        row_echelon->matrix[j][k] = row_echelon->matrix[j][k] - *ratio * row_echelon->matrix[i][k];
+    }
+
+}
+
+void gauss_elimination(matrix_t *A, matrix_t *row_echelon, int for_inverse){
+
     int dimension = A->rows;
-    s21_create_matrix(dimension, dimension, &tmp);
-    tmp.matrix = A->matrix;
+
+    for (int i = 0; i < A->rows; ++i) {
+        for (int j = 0; j < A->columns; ++j)
+            row_echelon->matrix[i][j] = A->matrix[i][j];
+    }
+
     double ratio = 0.0;
 
     int first_zero_occur = 0;
     for (int i = 0; i < dimension; ++i) {
-        if (tmp.matrix[i][i] == 0.0) {
+        if (row_echelon->matrix[i][i] == 0.0) {
             first_zero_occur = i;
-            int non_zero_index = find_non_zero_diagonal_element(i + 1, &tmp);
-            if (tmp.matrix[non_zero_index][non_zero_index] != 0.0) {
-                swap_rows(first_zero_occur, non_zero_index, &tmp);
-                for (int index = 0; index < dimension; ++index) tmp.matrix[i][index] *= -1;
+            int non_zero_diag_element = find_non_zero_diagonal_element(i + 1, row_echelon);
+            if (row_echelon->matrix[non_zero_diag_element][non_zero_diag_element] != 0.0) {
+                swap_rows(first_zero_occur, non_zero_diag_element, row_echelon);
+                for (int index = 0; index < dimension; ++index) row_echelon->matrix[i][index] *= -1;
             } else
                 continue;
         } else
         {
             for (int j = 0; j < dimension; ++j) {
-                if (j > i) {
-                    ratio = tmp.matrix[j][i] / tmp.matrix[i][i];
-                    for (int k = 1; k < dimension; ++k) {
-                        tmp.matrix[j][k] = tmp.matrix[j][k] - ratio * tmp.matrix[i][k];
-                    }
-                }
+                if (for_inverse && i != j)
+                    elimination_processor(&ratio, row_echelon, i, j, dimension, 1);
+                else if (j > i)
+                    elimination_processor(&ratio, row_echelon, i, j, dimension, 0);
             }
         }
     }
-    for (int i = 0; i < dimension; ++i)
-        *result *= tmp.matrix[i][i];
-    s21_remove_matrix(&tmp);
 }
