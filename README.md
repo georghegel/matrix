@@ -4,6 +4,12 @@ Matrix - is a library with basic operations, written on C. <br>
 It allows to create, delete, add/subtract/multiply matrices. <br>
 Also you can get determinant, inverse and algebraic complements in O(n^3) time complexity.
 
+## Installation and usage
+### MacOS
+
+### Ubuntu
+
+### Windows
 
 ## Matrix creation, deletion
 
