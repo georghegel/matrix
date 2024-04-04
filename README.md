@@ -1,5 +1,9 @@
 
-# matrix_lib - library for matrix operations in C
+# matrix
+Matrix - is a library with basic operations, written on C.
+It allows to create, delete, add/subtract/multiply matrices. <br>
+Also you can get determinant, inverse and algebraic complements in O(n^3) time complexity.
+
 
 ## Matrix creation, deletion
 
