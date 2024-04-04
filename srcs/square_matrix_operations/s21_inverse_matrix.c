@@ -1,4 +1,4 @@
-#include "../s21_matrix.h"
+#include "../../s21_matrix.h"
 
 void create_augment_matrix(matrix_t *A, matrix_t *augment_matrix) {
   for (int i = 0; i < A->rows; ++i) {

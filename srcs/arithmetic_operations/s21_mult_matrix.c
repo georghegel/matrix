@@ -1,4 +1,4 @@
-#include "../s21_matrix.h"
+#include "../../s21_matrix.h"
 
 void multiplier(matrix_t *A, matrix_t *B, matrix_t *result) {
   for (int i = 0; i < A->rows; ++i) {

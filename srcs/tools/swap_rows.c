@@ -1,4 +1,4 @@
-#include "../s21_matrix.h"
+#include "../../s21_matrix.h"
 
 void swap_rows(int row_1, int row_2, matrix_t* matrix) {
   double* tmp = (double*)calloc(matrix->columns, sizeof(double));

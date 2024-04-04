@@ -2,29 +2,29 @@ CC =	gcc
 FLAGS =	-Wall -Wextra -Werror --std=c11
 TEST_FLAGS = -fprofile-arcs -ftest-coverage
 
-TOOLS						=	./tools/check_rows_columns.c \
-								./tools/does_matrix_exist.c \
-								./tools/is_equal_size.c \
-								./tools/find_non_zero_diagonal_element.c \
-								./tools/gauss_elimination.c \
-								./tools/is_square_matrix.c \
-								./tools/row_copy.c \
-								./tools/swap_rows.c
+TOOLS						=	./srcs/tools/check_rows_columns.c \
+								./srcs/tools/does_matrix_exist.c \
+								./srcs/tools/is_equal_size.c \
+								./srcs/tools/find_non_zero_diagonal_element.c \
+								./srcs/tools/gauss_elimination.c \
+								./srcs/tools/is_square_matrix.c \
+								./srcs/tools/row_copy.c \
+								./srcs/tools/swap_rows.c
 
-ARITHMETIC_OPERATIONS		=	./arithmetic_operations/s21_sum_matrix.c \
-								./arithmetic_operations/s21_sub_matrix.c \
-								./arithmetic_operations/s21_mult_number.c \
-								./arithmetic_operations/s21_mult_matrix.c
+ARITHMETIC_OPERATIONS		=	./srcs/arithmetic_operations/s21_sum_matrix.c \
+								./srcs/arithmetic_operations/s21_sub_matrix.c \
+								./srcs/arithmetic_operations/s21_mult_number.c \
+								./srcs/arithmetic_operations/s21_mult_matrix.c
 
-BASIC_OPERATIONS	 		=	./basic_operations/s21_eq_matrix.c \
-								./basic_operations/s21_remove_matrix.c \
-								./basic_operations/s21_create_matrix.c
+BASIC_OPERATIONS	 		=	./srcs/basic_operations/s21_eq_matrix.c \
+								./srcs/basic_operations/s21_remove_matrix.c \
+								./srcs/basic_operations/s21_create_matrix.c
 
-SQUARE_MATRIX_OPERATIONS	=	./square_matrix_operations/s21_calc_complements.c \
-								./square_matrix_operations/s21_determinant.c \
-								./square_matrix_operations/s21_inverse_matrix.c
+SQUARE_MATRIX_OPERATIONS	=	./srcs/square_matrix_operations/s21_calc_complements.c \
+								./srcs/square_matrix_operations/s21_determinant.c \
+								./srcs/square_matrix_operations/s21_inverse_matrix.c
 
-TRANSFORMATION				=	./transformation/s21_transpose.c
+TRANSFORMATION				=	./srcs/transformation/s21_transpose.c
 
 SRCS 		=	$(ARITHMETIC_OPERATIONS) $(BASIC_OPERATIONS) \
 				$(SQUARE_MATRIX_OPERATIONS) $(TRANSFORMATION) $(TOOLS)
