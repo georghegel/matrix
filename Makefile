@@ -37,7 +37,7 @@ OBJS		=	$(SRCS:.c=.o)
 rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 .PHONY: clean s21_matrix.a gcov_report clang test format
-all: $(OBJS) s21_matrix.a
+all: $(OBJS) s21_matrix.a clean
 
 s21_matrix.a: $(OBJS)
 	@$(CC) -c $(FLAGS) $(SRCS)
@@ -64,7 +64,7 @@ clang:
 	@clang-format --style=Google -i $(SRC_TEST) s21_matrix.h
 
 clean:
-	@rm -rf s21_matrix.a *.o *.gcno *.gcda *.gcov *.gch \
+	@rm -rf *.o *.gcno *.gcda *.gcov *.gch \
 	test ./test.DSYM *.png *.html *.css *.info ./src \
 	$(call rwildcard,.,*.o) cmd_line ./usr \
 	$(call rwildcard,.,*.html)
