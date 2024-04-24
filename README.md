@@ -35,22 +35,22 @@ $ make test
 Create matrix (initial matrix will be filled with zeros):
 ```
 matrix_t my_matrix;
-s21_create_matrix(3,3, &my_matrix);
+create_matrix(3,3, &my_matrix);
 ```
 Delete matrix:
 ```
-s21_remove_matrix(&my_matrix);
+delete_matrix(&my_matrix);
 ```
 Comparer returns 0 if at least one element differ. <br>
 Otherwise 1 return.
 ```
 matrix_t A, B;
-s21_create_matrix(3,3, &A);
-s21_create_matrix(3,3, &B);
+create_matrix(3,3, &A);
+create_matrix(3,3, &B);
 
 // fill matrix A and B with your values
 
-if (s21_eq_matrix(&A, &B)) {
+if (eq_matrix(&A, &B)) {
     ...
 }
 ```
@@ -61,18 +61,18 @@ Addition/subtraction:
 ```
 matrix_t A, B, result;
 
-s21_create_matrix(3,3, &A);
-s21_create_matrix(3,3, &B);
+create_matrix(3,3, &A);
+create_matrix(3,3, &B);
 
-s21_sum_matrix(&A, &B, &result);
-s21_sub_matrix(&A, &B, &result); 
+sum_matrix(&A, &B, &result);
+sub_matrix(&A, &B, &result); 
 ```
 
 Scalar multiplication:
 
 ```
 double number = 2.73;
-s21_mult_number(&A, number, &result);
+mult_number(&A, number, &result);
 ```
 
 Matrix multiplication:
@@ -80,15 +80,15 @@ Matrix multiplication:
 ```
 matrix_t A, B, result;
 
-s21_create_matrix(3, 4, &A);
-s21_create_matrix(4, 5, &B);
+create_matrix(3, 4, &A);
+create_matrix(4, 5, &B);
 
-s21_mult_number(&A, &B, &result);
+mult_number(&A, &B, &result);
 ```
 
 ## Transpose
 ```
-s21_transpose(&A, &result);
+transpose(&A, &result);
 ```
 
 
@@ -96,17 +96,17 @@ s21_transpose(&A, &result);
 Determinant:
 ```
 double result = 0.0;
-s21_determinant(&A, &result);
+determinant(&A, &result);
 ```
 
 Inverse matrix:
 ```
-s21_inverse_matrix(&A, &result);
+inverse(&A, &result);
 ```
 
 Algebraic complements matrix:
 ```
-s21_calc_complements(&A, &result);
+complements(&A, &result);
 ```
 
 
