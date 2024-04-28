@@ -1,3 +1,6 @@
+![Kendrick Lamar - Section .80](./screens/Section.80-Cover.jpg)<br>
+#### Kendrick Lamar - Section .80<br>
+*Beginning of the new era*
 
 # matrix
 Matrix - is a library with basic operations, written on C. <br>
