@@ -1,5 +1,5 @@
-#ifndef S21_MATRIX_H
-#define S21_MATRIX_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <math.h>
 #include <stdio.h>
@@ -23,20 +23,20 @@ typedef struct matrix_struct {
   int columns;
 } matrix_t;
 
-int s21_create_matrix(int rows, int columns, matrix_t *result);
-void s21_remove_matrix(matrix_t *A);
-int s21_eq_matrix(matrix_t *A, matrix_t *B);
+int create_matrix(int rows, int columns, matrix_t *result);
+void delete_matrix(matrix_t *A);
+int eq_matrix(matrix_t *A, matrix_t *B);
 
-int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
-int s21_sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
-int s21_mult_number(matrix_t *A, double number, matrix_t *result);
-int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
+int sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
+int sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
+int mult_number(matrix_t *A, double number, matrix_t *result);
+int mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
 
-int s21_transpose(matrix_t *A, matrix_t *result);
+int transpose(matrix_t *A, matrix_t *result);
 
-int s21_calc_complements(matrix_t *A, matrix_t *result);
-int s21_determinant(matrix_t *A, double *result);
-int s21_inverse_matrix(matrix_t *A, matrix_t *result);
+int complements(matrix_t *A, matrix_t *result);
+int determinant_m(matrix_t *A, double *result);
+int inverse(matrix_t *A, matrix_t *result);
 
 int is_determinant_zero(matrix_t *matrix);
 void gauss_elimination(matrix_t *A, matrix_t *row_echelon, int for_inverse);

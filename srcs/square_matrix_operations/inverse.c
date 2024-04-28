@@ -1,4 +1,4 @@
-#include "../../s21_matrix.h"
+#include "../../matrix.h"
 
 void create_augment_matrix(matrix_t *A, matrix_t *augment_matrix) {
   for (int i = 0; i < A->rows; ++i) {
@@ -43,18 +43,18 @@ int s21_inverse_matrix(matrix_t *A, matrix_t *result) {
   if (A == NULL || result == NULL || !check_rows_columns(A->rows, A->columns)) {
     answer = INCORRECT_MATRIX;
   } else {
-    s21_determinant(A, &determinant);
+    determinant_m(A, &determinant);
     if (determinant == 0.0 || determinant == -0.0 || !is_square_matrix(A)) {
       answer = CALCULATION_ERROR;
     } else {
-      s21_create_matrix(A->rows, A->columns, result);
-      s21_create_matrix(A->rows, A->columns * 2, &augment_matrix);
+      create_matrix(A->rows, A->columns, result);
+      create_matrix(A->rows, A->columns * 2, &augment_matrix);
       create_augment_matrix(A, &augment_matrix);
 
       gauss_elimination(A, &augment_matrix, INVERSE);
       inverse_augment_matrix(A, &augment_matrix);
       copy_result(&augment_matrix, result);
-      s21_remove_matrix(&augment_matrix);
+      delete_matrix(&augment_matrix);
       answer = OK;
     }
   }

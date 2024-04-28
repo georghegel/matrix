@@ -1,4 +1,4 @@
-#include "../../s21_matrix.h"
+#include "../../matrix.h"
 
 int find_non_zero_diagonal_element(int start, matrix_t *matrix) {
   int answer = start - 1;

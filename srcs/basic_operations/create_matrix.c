@@ -1,6 +1,6 @@
-#include "../../s21_matrix.h"
+#include "../../matrix.h"
 
-int s21_create_matrix(int rows, int columns, matrix_t *result) {
+int create_matrix(int rows, int columns, matrix_t *result) {
   int answer = OK;
   if (check_rows_columns(rows, columns) && result != NULL) {
     result->matrix = (double **)calloc(rows, sizeof(double *));

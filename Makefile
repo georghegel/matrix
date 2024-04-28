@@ -11,20 +11,20 @@ TOOLS						=	./srcs/tools/check_rows_columns.c \
 								./srcs/tools/row_copy.c \
 								./srcs/tools/swap_rows.c
 
-ARITHMETIC_OPERATIONS		=	./srcs/arithmetic_operations/s21_sum_matrix.c \
-								./srcs/arithmetic_operations/s21_sub_matrix.c \
-								./srcs/arithmetic_operations/s21_mult_number.c \
-								./srcs/arithmetic_operations/s21_mult_matrix.c
+ARITHMETIC_OPERATIONS		=	./srcs/arithmetic_operations/sum_matrix.c \
+								./srcs/arithmetic_operations/sub_matrix.c \
+								./srcs/arithmetic_operations/mult_number.c \
+								./srcs/arithmetic_operations/mult_matrix.c
 
-BASIC_OPERATIONS	 		=	./srcs/basic_operations/s21_eq_matrix.c \
-								./srcs/basic_operations/s21_remove_matrix.c \
-								./srcs/basic_operations/s21_create_matrix.c
+BASIC_OPERATIONS	 		=	./srcs/basic_operations/eq_matrix.c \
+								./srcs/basic_operations/delete_matrix.c \
+								./srcs/basic_operations/create_matrix.c
 
-SQUARE_MATRIX_OPERATIONS	=	./srcs/square_matrix_operations/s21_calc_complements.c \
-								./srcs/square_matrix_operations/s21_determinant.c \
-								./srcs/square_matrix_operations/s21_inverse_matrix.c
+SQUARE_MATRIX_OPERATIONS	=	./srcs/square_matrix_operations/complements.c \
+								./srcs/square_matrix_operations/determinant.c \
+								./srcs/square_matrix_operations/inverse.c
 
-TRANSFORMATION				=	./srcs/transformation/s21_transpose.c
+TRANSFORMATION				=	./srcs/transformation/transpose.c
 
 SRCS 		=	$(ARITHMETIC_OPERATIONS) $(BASIC_OPERATIONS) \
 				$(SQUARE_MATRIX_OPERATIONS) $(TRANSFORMATION) $(TOOLS)
@@ -58,10 +58,10 @@ main:
 	@$(CC) -o $@ $(SRCS) main.c
 
 style:
-	@clang-format --style=Google -n $(SRC_TEST) s21_matrix.h
+	@clang-format --style=Google -n $(SRC_TEST) matrix.h
 
 clang:
-	@clang-format --style=Google -i $(SRC_TEST) s21_matrix.h
+	@clang-format --style=Google -i $(SRC_TEST) matrix.h
 
 clean:
 	@rm -rf *.o *.gcno *.gcda *.gcov *.gch \

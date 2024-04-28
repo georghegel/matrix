@@ -17,8 +17,8 @@ $ make test
 ```
 
 ### Ubuntu
-Pretty similar to MacOS.<br>
-*for now `make test` doesn't work correctly and I'm fixing it*
+Pretty similar to macOS.<br>
+*for now `make test` doesn't work correctly, and I'm fixing it*
 ```
 $ git clone https://github.com/georghegel/matrix.git
 $ cd matrix
@@ -35,34 +35,45 @@ $ make test
 Create matrix (initial matrix will be filled with zeros):
 ```
 matrix_t my_matrix;
-create_matrix(3,3, &my_matrix);
+create_matrix(3, 3, &my_matrix);
+
+my_matrix[0][0] = 7;
+my_matrix[0][1] = 3;
+my_matrix[0][2] = 4;
+
+my_matrix[1][0] = 5;
+my_matrix[1][1] = 2;
+my_matrix[1][2] = 1;
+
+my_matrix[2][0] = 9;
+my_matrix[2][1] = 11;
+my_matrix[2][2] = 17;
 ```
+
 Delete matrix:
 ```
 delete_matrix(&my_matrix);
 ```
-Comparer returns 0 if at least one element differ. <br>
-Otherwise 1 return.
+Next function returns 0 if element-wise comparison is successful (e.g. each corresponding element are equal). <br>
+Otherwise 1 will return.
 ```
 matrix_t A, B;
-create_matrix(3,3, &A);
-create_matrix(3,3, &B);
+create_matrix(3, 3, &A);
+create_matrix(3, 3, &B);
 
-// fill matrix A and B with your values
+// fill matrix A and B with your values as we did before
 
-if (eq_matrix(&A, &B)) {
-    ...
-}
+int res = eq_matrix(&A, &B);
 ```
 
 ## Basic operations on matrices
 
-Addition/subtraction:
+[Addition/subtraction](https://en.wikipedia.org/wiki/Matrix_addition#Entrywise_sum):
 ```
 matrix_t A, B, result;
 
-create_matrix(3,3, &A);
-create_matrix(3,3, &B);
+create_matrix(3, 3, &A);
+create_matrix(3, 3, &B);
 
 sum_matrix(&A, &B, &result);
 sub_matrix(&A, &B, &result); 
@@ -72,50 +83,53 @@ Scalar multiplication:
 
 ```
 double number = 2.73;
+
 mult_number(&A, number, &result);
 ```
 
-Matrix multiplication:
-
+[Matrix multiplication:](https://en.wikipedia.org/wiki/Matrix_multiplication#Definition)
 ```
 matrix_t A, B, result;
 
 create_matrix(3, 4, &A);
 create_matrix(4, 5, &B);
 
-mult_number(&A, &B, &result);
+mult_matrix(&A, &B, &result);
 ```
 
 ## Transpose
+[Matrix transposition:](https://en.wikipedia.org/wiki/Transpose#Transpose_of_a_matrix)
 ```
+matrix_t A, result;
+
+create_matrix(3, 7, &A);
+
 transpose(&A, &result);
+// result matrice's rows and cols = (7, 3);
 ```
 
 
 ## Determinant, inverse and algebraic complements matrix
-Determinant:
+[Determinant:(a bit difficult concept)](https://en.wikipedia.org/wiki/Determinant)
 ```
 double result = 0.0;
-determinant(&A, &result);
+determinant_m(&A, &result);
 ```
 
-Inverse matrix:
+[Inverse matrix:](https://en.wikipedia.org/wiki/Invertible_matrix)
 ```
 inverse(&A, &result);
 ```
 
-Algebraic complements matrix:
+[Algebraic complements matrix:](https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Complement)<br>
+To understand this concept you should be familiar with minors, which is obvious.
 ```
 complements(&A, &result);
 ```
 
 
-## Trace, diagonal matrices and other useful tools.
-*on work*
-
-
 ## References:
-[1] Кострикин - Введение в Алгебру<br>
-[2] Винберг - Курс алгебры<br>
-[3] Gauss elimination - wikipedia<br>
-[4] Invertible matrices - wikipedia<br>
+[1] [Кострикин - Введение в Алгебру](https://studizba.com/files/show/pdf/65970-1-vvedenie-v-algebru--kostrikin--chast.html)<br>
+[2] [Винберг - Курс алгебры](https://mathprofi.com/uploads/files/2581_f_41_e.b.vinberg-kurs-algebry-2-e-izd.pdf)<br>
+[3] [Gauss elimination - wikipedia]()<br>
+[4] [Invertible matrices - wikipedia](https://en.wikipedia.org/wiki/Invertible_matrix)

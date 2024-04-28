@@ -1,4 +1,4 @@
-#include "../../s21_matrix.h"
+#include "../../matrix.h"
 
 /*
  * There are several ways to calculate determinant of a square matrix.

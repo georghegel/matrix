@@ -1,6 +1,6 @@
 #include <check.h>
 
-#include "../s21_matrix.h"
+#include "../matrix.h"
 
 void set_values(const double *nums, matrix_t *A) {
   int count = 0;
@@ -17,7 +17,7 @@ START_TEST(create_1) {
   matrix_t A;
   int rows = 0;
   int cols = 1;
-  int res = s21_create_matrix(rows, cols, &A);
+  int res = create_matrix(rows, cols, &A);
   ck_assert_int_eq(res, INCORRECT_MATRIX);
 }
 END_TEST
@@ -25,19 +25,19 @@ END_TEST
 START_TEST(create_2) {
   int rows = 10;
   int cols = 10;
-  int res = s21_create_matrix(rows, cols, NULL);
+  int res = create_matrix(rows, cols, NULL);
   ck_assert_int_eq(res, INCORRECT_MATRIX);
 }
 END_TEST
 
 /* REMOVE */
-START_TEST(remove_1) { s21_remove_matrix(NULL); }
+START_TEST(remove_1) { delete_matrix(NULL); }
 END_TEST
 
 START_TEST(remove_2) {
   matrix_t A;
-  s21_create_matrix(10, 10, &A);
-  s21_remove_matrix(&A);
+  create_matrix(10, 10, &A);
+  delete_matrix(&A);
   ck_assert_ptr_eq(A.matrix, NULL);
   ck_assert_int_eq(A.rows, 0);
   ck_assert_int_eq(A.columns, 0);
@@ -46,7 +46,7 @@ END_TEST
 
 /* EQUAL */
 START_TEST(equal_1) {
-  int res = s21_eq_matrix(NULL, NULL);
+  int res = eq_matrix(NULL, NULL);
   ck_assert_int_eq(res, 0);
 }
 END_TEST
@@ -54,26 +54,26 @@ END_TEST
 START_TEST(equal_2) {
   matrix_t A;
   matrix_t B;
-  s21_create_matrix(10, 10, &A);
-  s21_create_matrix(10, 10, &B);
+  create_matrix(10, 10, &A);
+  create_matrix(10, 10, &B);
   A.rows = 0;
-  int res = s21_eq_matrix(&A, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 0);
   A.rows = 10;
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
 START_TEST(equal_3) {
   matrix_t A;
   matrix_t B;
-  s21_create_matrix(10, 10, &A);
-  s21_create_matrix(10, 9, &B);
-  int res = s21_eq_matrix(&A, &B);
+  create_matrix(10, 10, &A);
+  create_matrix(10, 9, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 0);
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
@@ -81,14 +81,14 @@ START_TEST(equal_4) {
   matrix_t A;
   matrix_t B;
   double nums[4] = {123.456, 2, 3, 4};
-  s21_create_matrix(2, 2, &A);
-  s21_create_matrix(2, 2, &B);
+  create_matrix(2, 2, &A);
+  create_matrix(2, 2, &B);
   set_values(nums, &A);
   set_values(nums, &B);
-  int res = s21_eq_matrix(&A, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 1);
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
@@ -97,14 +97,14 @@ START_TEST(equal_5) {
   matrix_t B;
   double A_nums[4] = {1.2345678, 2, 3, 4};
   double B_nums[4] = {1.2345678, 2, 3, 4};
-  s21_create_matrix(2, 2, &A);
-  s21_create_matrix(2, 2, &B);
+  create_matrix(2, 2, &A);
+  create_matrix(2, 2, &B);
   set_values(A_nums, &A);
   set_values(B_nums, &B);
-  int res = s21_eq_matrix(&A, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 1);
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
@@ -113,14 +113,14 @@ START_TEST(equal_6) {
   matrix_t B;
   double A_nums[4] = {1.23456789, 2, 3, 4};
   double B_nums[4] = {1.23456789, 2, 3, 4};
-  s21_create_matrix(2, 2, &A);
-  s21_create_matrix(2, 2, &B);
+  create_matrix(2, 2, &A);
+  create_matrix(2, 2, &B);
   set_values(A_nums, &A);
   set_values(B_nums, &B);
-  int res = s21_eq_matrix(&A, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 1);
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
@@ -129,14 +129,14 @@ START_TEST(equal_7) {
   matrix_t B;
   double A_nums[4] = {1.2345678, 2, 3, 4};
   double B_nums[4] = {1.2345677, 2, 3, 4};
-  s21_create_matrix(2, 2, &A);
-  s21_create_matrix(2, 2, &B);
+  create_matrix(2, 2, &A);
+  create_matrix(2, 2, &B);
   set_values(A_nums, &A);
   set_values(B_nums, &B);
-  int res = s21_eq_matrix(&A, &B);
+  int res = eq_matrix(&A, &B);
   ck_assert_int_eq(res, 0);
-  s21_remove_matrix(&A);
-  s21_remove_matrix(&B);
+  delete_matrix(&A);
+  delete_matrix(&B);
 }
 END_TEST
 
