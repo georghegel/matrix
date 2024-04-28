@@ -6,26 +6,26 @@ Also you can get determinant, inverse and algebraic complements in O(n^3) time c
 
 ## Installation and usage
 ### MacOS
-```
+```shell
 $ git clone https://github.com/georghegel/matrix.git
 $ cd matrix
 $ make
 ```
 For testing:
-```
+```shell
 $ make test
 ```
 
 ### Ubuntu
 Pretty similar to macOS.<br>
 *for now `make test` doesn't work correctly, and I'm fixing it*
-```
+```shell
 $ git clone https://github.com/georghegel/matrix.git
 $ cd matrix
 $ make
 ```
 For testing:
-```
+```shell
 $ make test
 ```
 
@@ -33,7 +33,7 @@ $ make test
 *not ready yet*
 ## Matrix creation, deletion, comparer
 Create matrix (initial matrix will be filled with zeros):
-```
+```c
 matrix_t my_matrix;
 create_matrix(3, 3, &my_matrix);
 
@@ -51,12 +51,12 @@ my_matrix[2][2] = 17;
 ```
 
 Delete matrix:
-```
+```c
 delete_matrix(&my_matrix);
 ```
 Next function returns 0 if element-wise comparison is successful (e.g. each corresponding element are equal). <br>
 Otherwise 1 will return.
-```
+```c
 matrix_t A, B;
 create_matrix(3, 3, &A);
 create_matrix(3, 3, &B);
@@ -69,7 +69,7 @@ int res = eq_matrix(&A, &B);
 ## Basic operations on matrices
 
 [Addition/subtraction](https://en.wikipedia.org/wiki/Matrix_addition#Entrywise_sum):
-```
+```c
 matrix_t A, B, result;
 
 create_matrix(3, 3, &A);
@@ -81,14 +81,14 @@ sub_matrix(&A, &B, &result);
 
 Scalar multiplication:
 
-```
+```c
 double number = 2.73;
 
 mult_number(&A, number, &result);
 ```
 
 [Matrix multiplication:](https://en.wikipedia.org/wiki/Matrix_multiplication#Definition)
-```
+```c
 matrix_t A, B, result;
 
 create_matrix(3, 4, &A);
@@ -99,7 +99,7 @@ mult_matrix(&A, &B, &result);
 
 ## Transpose
 [Matrix transposition:](https://en.wikipedia.org/wiki/Transpose#Transpose_of_a_matrix)
-```
+```c
 matrix_t A, result;
 
 create_matrix(3, 7, &A);
@@ -111,19 +111,19 @@ transpose(&A, &result);
 
 ## Determinant, inverse and algebraic complements matrix
 [Determinant:(a bit difficult concept)](https://en.wikipedia.org/wiki/Determinant)
-```
+```c
 double result = 0.0;
 determinant_m(&A, &result);
 ```
 
 [Inverse matrix:](https://en.wikipedia.org/wiki/Invertible_matrix)
-```
+```c
 inverse(&A, &result);
 ```
 
 [Algebraic complements matrix:](https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Complement)<br>
 To understand this concept you should be familiar with minors, which is obvious.
-```
+```c
 complements(&A, &result);
 ```
 
